@@ -16,12 +16,27 @@ public class ViewShopItems extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Item> ItemDetails = ShopManagerDBUtil.getItemDetails();
+		String itemDetails = request.getParameter("search");
+		
+		if(itemDetails == null) {
+			
+			List<Item> ItemDetails = ShopManagerDBUtil.getItemDetails();
 			 
 			 request.setAttribute("ItemDetails", ItemDetails);
 			 
 			 RequestDispatcher dis = request.getRequestDispatcher("shopManagerDashboard.jsp");
 			 dis.forward(request, response);
+		}else {
+			
+			List<Item> ItemDetails = ShopManagerDBUtil.searchItem(itemDetails);
+			 
+			 request.setAttribute("ItemDetails", ItemDetails);
+			 
+			 RequestDispatcher dis = request.getRequestDispatcher("shopManagerDashboard.jsp");
+			 dis.forward(request, response);
+		}
+		
+		
 	}
 
 }

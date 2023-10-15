@@ -148,4 +148,64 @@ public class ShopManagerDBUtil {
 		
 		return isSuccess;
 	}
+	
+	public static boolean insertItems(String brand, String location, int wid, int sid, int smid, String type, float unitPrice, int amount) {
+		
+		isSuccess = false;
+		
+		try {
+	        con = DBConnect.getConnection();
+	        stmt = con.createStatement();
+	        
+	        String sql = "INSERT INTO Item VALUES(0, '"+brand+"', '"+location+"', "+wid+", "+sid+", "+smid+", '"+type+"', "+unitPrice+", "+amount+");";
+	        
+	        int rs = stmt.executeUpdate(sql);
+	        
+	        if (rs > 0) {
+	            isSuccess = true;
+	        } else {
+	            isSuccess = false;
+	        }
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return isSuccess;
+
+	    }
+	
+	public static List<Item> searchItem(String details){
+		
+		ArrayList<Item> item = new ArrayList<>();
+		
+		try {
+			
+			con = DBConnect.getConnection();
+			stmt = con.createStatement();
+			String sql = "SELECT * FROM Item WHERE type LIKE '%"+details+"%' OR brandName LIKE '%"+details+"%'";
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				int itemId = rs.getInt(1);
+				String Type = rs.getString(7);
+				String brandName = rs.getString(2);
+				float unitPrice = rs.getFloat(8);
+				String Location = rs.getString(3);
+				int shopId = rs.getInt(5);
+				int shopMgrId = rs.getInt(6);
+				int amount = rs.getInt(9);
+				
+				Item i = new Item(itemId, Type, brandName, unitPrice, Location, shopId, shopMgrId, amount);
+				
+				item.add(i);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return item;
+	}
 }
