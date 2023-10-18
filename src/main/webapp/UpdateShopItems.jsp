@@ -46,11 +46,7 @@
 	                <input type="Number" name="unitprice" id="typePasswordX" class="form-control form-control-lg" />
 	                <label class="form-label" for="typePasswordX">Unit Price</label>
 	              </div>
-	              
-	              <div class="form-outline form-white mb-4">
-	                <input type="Number" name="amount" id="typePasswordX" class="form-control form-control-lg" />
-	                <label class="form-label" for="typePasswordX">Amount</label>
-	              </div>
+	        
 	
 	      			<input class="btn btn-outline-light btn-lg px-5" type="submit" name="sid" value="Submit"/>
 				</form>

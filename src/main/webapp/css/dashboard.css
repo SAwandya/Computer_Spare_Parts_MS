@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
-body{margin-top:20px;
+body{
 background:#eee;
+margin-top: 0px;
+display: 0;
 }
 .card {
     box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
@@ -21,6 +23,13 @@ background:#eee;
 table th {
     font-weight: 600;
     background-color: #eeecfd !important;
+}
+
+
+.text-center{
+	
+	height: auto;
+	margin: 200px;
 }
 
                       

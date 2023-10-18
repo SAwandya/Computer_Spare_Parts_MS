@@ -21,7 +21,7 @@ public class ShopManagerDBUtil {
 			
 			con = DBConnect.getConnection();
 			stmt = con.createStatement();
-			String sql = "SELECT * FROM Item";
+			String sql = "SELECT * FROM Item WHERE location='shop'";
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -34,8 +34,10 @@ public class ShopManagerDBUtil {
 				int shopId = rs.getInt(5);
 				int shopMgrId = rs.getInt(6);
 				int amount = rs.getInt(9);
+				int purchase = rs.getInt(10);
+				int sold = rs.getInt(11);
 				
-				Item i = new Item(itemId, Type, brandName, unitPrice, Location, shopId, shopMgrId, amount);
+				Item i = new Item(itemId, Type, brandName, unitPrice, Location, shopId, shopMgrId, amount, purchase, sold);
 				
 				item.add(i);
 			}
@@ -54,7 +56,7 @@ public class ShopManagerDBUtil {
 		try {
 			con = DBConnect.getConnection();
 			stmt = con.createStatement();
-			String sql = "update Item set amount = amount + 1 where itemId = "+id+";";
+			String sql = "update Item set amount = amount + 1, purchase = purchase + 1 where itemId = "+id+";";
 			
 			int rs = stmt.executeUpdate(sql);
 			
@@ -79,7 +81,7 @@ public class ShopManagerDBUtil {
 		try {
 			con = DBConnect.getConnection();
 			stmt = con.createStatement();
-			String sql = "update Item set amount = amount - 1 where itemId = "+id+";";
+			String sql = "update Item set amount = amount - 1, sold = sold + 1 where itemId = "+id+";";
 			
 			int rs = stmt.executeUpdate(sql);
 			
@@ -124,14 +126,14 @@ public class ShopManagerDBUtil {
 		return isSuccess;
 	}
 
-	public static boolean updateItem(int id, String type, String brand, float unitprice, int amount) {
+	public static boolean updateItem(int id, String type, String brand, float unitprice) {
 		
 		boolean isSuccess = false;
 		
 		try {
 			con = DBConnect.getConnection();
 			stmt = con.createStatement();
-			String sql = "update Item set type='"+type+"', brandName='"+brand+"', unitprice="+unitprice+", amount="+amount+" where itemId="+id+"";
+			String sql = "update Item set type='"+type+"', brandName='"+brand+"', unitprice="+unitprice+" where itemId="+id+"";
 			
 			int rs = stmt.executeUpdate(sql);
 			
@@ -157,7 +159,7 @@ public class ShopManagerDBUtil {
 	        con = DBConnect.getConnection();
 	        stmt = con.createStatement();
 	        
-	        String sql = "INSERT INTO Item VALUES(0, '"+brand+"', '"+location+"', "+wid+", "+sid+", "+smid+", '"+type+"', "+unitPrice+", "+amount+");";
+	        String sql = "INSERT INTO Item VALUES(0, '"+brand+"', '"+location+"', "+wid+", "+sid+", "+smid+", '"+type+"', "+unitPrice+", "+amount+", "+amount+", 0);";
 	        
 	        int rs = stmt.executeUpdate(sql);
 	        
@@ -183,7 +185,7 @@ public class ShopManagerDBUtil {
 			
 			con = DBConnect.getConnection();
 			stmt = con.createStatement();
-			String sql = "SELECT * FROM Item WHERE type LIKE '%"+details+"%' OR brandName LIKE '%"+details+"%'";
+			String sql = "SELECT * FROM Item WHERE location='shop' AND type LIKE LOWER('%"+details+"%') OR brandName LIKE LOWER('%"+details+"%')";
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -196,8 +198,10 @@ public class ShopManagerDBUtil {
 				int shopId = rs.getInt(5);
 				int shopMgrId = rs.getInt(6);
 				int amount = rs.getInt(9);
+				int purchase = rs.getInt(10);
+				int sold = rs.getInt(11);
 				
-				Item i = new Item(itemId, Type, brandName, unitPrice, Location, shopId, shopMgrId, amount);
+				Item i = new Item(itemId, Type, brandName, unitPrice, Location, shopId, shopMgrId, amount, purchase, sold);
 				
 				item.add(i);
 			}
@@ -208,4 +212,36 @@ public class ShopManagerDBUtil {
 		
 		return item;
 	}
+	
+	public static List<ShopManager> validateShopManager(String username, String password){
+		
+		ArrayList<ShopManager> manager = new ArrayList<>();
+		
+		try {
+			
+			con = DBConnect.getConnection();
+			stmt = con.createStatement();
+			String sql = "SELECT * FROM shopManager WHERE username='"+username+"' and password='"+password+"'";
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				int mid = rs.getInt(1);
+				String uname = rs.getString(2);
+				String name = rs.getString(4);
+				String pwd = rs.getString(3);
+				
+				ShopManager mgr = new ShopManager(mid, uname, name, pwd);
+				
+				manager.add(mgr);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return manager;
+	}
+	
+	
+	
 }

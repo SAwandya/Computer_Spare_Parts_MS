@@ -23,12 +23,10 @@ public class updateItemServlet extends HttpServlet {
 		String unitprice = request.getParameter("unitprice");
 		float convertedUnitPrice = Float.parseFloat(unitprice);
 		
-		String amount = request.getParameter("amount");
-		int convertedAmount = Integer.parseInt(amount);
 		
 		boolean isTrue;
 		 
-		 isTrue = ShopManagerDBUtil.updateItem(convertedId, type, brand, convertedUnitPrice, convertedAmount);
+		 isTrue = ShopManagerDBUtil.updateItem(convertedId, type, brand, convertedUnitPrice);
 		 
 		 if(isTrue == true) {			 			
 			 

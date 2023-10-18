@@ -10,22 +10,36 @@ public class Item {
 	private int shopId;
 	private int shopMgrId;
 	private int amount;
+	private int purchase;
+	private int sold;
 	
 	public Item(int itemId, String type, String brandName, float unitPrice, String location, int shopId, int shopMgrId,
-			int amount) {
+			int amount, int purchase, int sold) {
 		
 		this.itemId = itemId;
 		this.type = type;
 		this.brandName = brandName;
 		this.unitPrice = unitPrice;
-		Location = location;
+		this.Location = location;
 		this.shopId = shopId;
 		this.shopMgrId = shopMgrId;
 		this.amount = amount;
+		this.purchase = purchase;
+		this.sold = sold;
 	}
 
 	public int getItemId() {
 		return itemId;
+	}
+	
+	public int getPurchase() {
+		
+		return purchase;
+	}
+	
+	public int getSold() {
+		
+		return sold;
 	}
 
 	
