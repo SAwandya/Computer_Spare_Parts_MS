@@ -77,8 +77,10 @@
                                 <th>Unit price</th>
                                 <th>Amount</th>
                                 <th class="text-center ">PURCHASE</th>
+                                <th class="text-center ">Undo Perchase</th>
                                 <th class="text-center ">SELL</th>
-                                <th class="text-center ">Update</th>
+                                <th class="text-center ">Undo Sell</th>
+                                <th class="text-center ">Update</th>                             
                                 <th class="text-center">Remove</th>
                                 
                             </tr>
@@ -105,6 +107,15 @@
 	                                	<input type="hidden" value="${item.itemId}" type="text" name="increment">
 	                                	<input type="submit" value="PURCHES" class="btn btn-warning align-middle ms-3">
 	                                </form>
+	                                
+	                             
+                                </td>
+                                
+                                <td>
+                                	<form method="post" action="UndoItemServlet">
+	                                	<input type="hidden" value="${item.itemId}" type="text" name="undo">
+	                                	<input type="submit" value="Undo" class="btn btn-outline-secondary">
+	                                </form>
                                 </td>
                                 
                                 <td>
@@ -113,8 +124,16 @@
                                 		<input type="submit" value="SELL" class="btn btn-warning ms-3">
                                 	</form>
                                 </td>
+                                
+                                <td>
+                                	<form method="post" action="UndoSoldItemServlet">
+	                                	<input type="hidden" value="${item.itemId}" type="text" name="undo">
+	                                	<input type="submit" value="Undo" class="btn btn-outline-secondary">
+	                                </form>
+                                </td>
+                                
                                 <td class="d-flex justify-content-center">
-                                	<a href="http://localhost:8090/Computer_Spareparts__MS/UpdateShopItems.jsp?id=${item.itemId}">
+                                	<a href="http://localhost:8090/Computer_Spareparts__MS/UpdateShopItems.jsp?id=${item.itemId}&brand=${item.brandName}&unitprice=${item.unitPrice}&amount=${item.amount}&type=${item.type}">
 					                	<input type="submit" value="Update" class="btn btn-info align-middle">
 					            	</a>
 					            </td>

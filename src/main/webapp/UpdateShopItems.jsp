@@ -24,31 +24,35 @@
 				
 						<% 
 						    String id = request.getParameter("id");
+							String type = request.getParameter("type");
+							String brand = request.getParameter("brand");
+							String unitprice = request.getParameter("unitprice");
 						%>  
 							            
 	              <div class="form-outline form-white mb-4">
-	                <input type="text" readonly name="itemId" id="typeEmailX" value="<%= id %>" class="form-control form-control-lg" />
+	                <input type="text" readonly name="itemId" id="typeEmailX" value="<%= id %>" class="form-control form-control-lg" required/>
 	                <label class="form-label" for="typeEmailX">Id</label>
 	              </div>
 	        
 	
 	              <div class="form-outline form-white mb-4">
-	                <input type="text" name="type" id="typeEmailX" class="form-control form-control-lg" />
+	                <input type="text" name="type" id="typeEmailX" value="<%= type %>" class="form-control form-control-lg" required/>
 	                <label class="form-label" for="typeEmailX">Type</label>
 	              </div>
 	
 	              <div class="form-outline form-white mb-4">
-	                <input type="text" name="brand" id="typePasswordX" class="form-control form-control-lg" />
+	                <input type="text" name="brand" id="typePasswordX" value="<%= brand %>" class="form-control form-control-lg" required/>
 	                <label class="form-label" for="typePasswordX">Brand Name</label>
 	              </div>
 	              
 	              <div class="form-outline form-white mb-4">
-	                <input type="Number" name="unitprice" id="typePasswordX" class="form-control form-control-lg" />
+	                <input type="Number" name="unitprice" id="typePasswordX" value="<%= unitprice %>" class="form-control form-control-lg" required/>
 	                <label class="form-label" for="typePasswordX">Unit Price</label>
 	              </div>
 	        
 	
 	      			<input class="btn btn-outline-light btn-lg px-5" type="submit" name="sid" value="Submit"/>
+	      			<a href="http://localhost:8090/Computer_Spareparts__MS/Landing"><button class="btn btn-outline-light btn-lg px-5" type="button">Back</button></a>
 				</form>
 	
 	            </div>

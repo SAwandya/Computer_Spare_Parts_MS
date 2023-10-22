@@ -4,6 +4,12 @@ body{
 background:#eee;
 margin-top: 0px;
 display: 0;
+background-image: url(../images/back.jpg);
+background-size: cover; 
+background-repeat: no-repeat; 
+background-attachment: fixed;
+margin: 0;
+padding: 0;
 }
 .card {
     box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
