@@ -8,7 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.models.ShopManagerDBUtil;
+import com.models.SparePartsService;
+import com.models.SparePartImple;
 
 @WebServlet("/deleteItemServlet")
 public class deleteItemServlet extends HttpServlet {
@@ -22,8 +23,10 @@ public class deleteItemServlet extends HttpServlet {
 		int convertedId = Integer.parseInt(id);
 		
 		boolean isTrue;
-		 
-		 isTrue = ShopManagerDBUtil.deleteItems(convertedId);
+		
+		SparePartsService obj1 = new SparePartImple();
+		
+		 isTrue = obj1.deleteItems(convertedId);
 		 
 		 if(isTrue == true) {			 			
 			 

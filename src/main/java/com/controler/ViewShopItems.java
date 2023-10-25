@@ -14,6 +14,9 @@ import java.util.List;
 import com.classes.Item;
 import com.models.ShopManagerDBUtil;
 
+import com.models.SparePartsService;
+import com.models.SparePartImple;
+
 @WebServlet("/Landing")
 public class ViewShopItems extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,9 +26,11 @@ public class ViewShopItems extends HttpServlet {
 		
 		String itemDetails = request.getParameter("search");
 		
-		if(itemDetails == null) {
+		SparePartsService obj1 = new SparePartImple();
+		
+		if(itemDetails == null) {			
 			
-			List<Item> ItemDetails = ShopManagerDBUtil.getItemDetails();
+			List<Item> ItemDetails = obj1.getItemDetails();
 			 
 			 request.setAttribute("ItemDetails", ItemDetails);
 			 
@@ -33,7 +38,7 @@ public class ViewShopItems extends HttpServlet {
 			 dis.forward(request, response);
 		}else {
 			
-			List<Item> ItemDetails = ShopManagerDBUtil.searchItem(itemDetails);
+			List<Item> ItemDetails = obj1.searchItem(itemDetails);
 			 
 			 request.setAttribute("ItemDetails", ItemDetails);
 			 

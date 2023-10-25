@@ -8,7 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.models.ShopManagerDBUtil;
+import com.models.SparePartsService;
+import com.models.SparePartImple;
 
 @WebServlet("/IncrementServlet")
 public class IncrementServlet extends HttpServlet {
@@ -22,8 +23,10 @@ public class IncrementServlet extends HttpServlet {
 		int convertedId = Integer.parseInt(id);
 		
 		boolean isTrue;
+		
+		SparePartsService obj1 = new SparePartImple();
 		 
-		 isTrue = ShopManagerDBUtil.incrementAmount(convertedId);
+		 isTrue = obj1.incrementAmount(convertedId);
 		 
 		 if(isTrue == true) {			 			
 			 

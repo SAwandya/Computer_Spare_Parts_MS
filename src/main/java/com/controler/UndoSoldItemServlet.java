@@ -8,7 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.models.ShopManagerDBUtil;
+import com.models.SparePartsService;
+import com.models.SparePartImple;
 
 @WebServlet("/UndoSoldItemServlet")
 public class UndoSoldItemServlet extends HttpServlet {
@@ -20,8 +21,10 @@ public class UndoSoldItemServlet extends HttpServlet {
 		int convertedId = Integer.parseInt(id);
 		
 		boolean isTrue;
+		
+		SparePartsService obj1 = new SparePartImple();
 		 
-		 isTrue = ShopManagerDBUtil.undoSold(convertedId);
+		 isTrue = obj1.undoSold(convertedId);
 		 
 		 if(isTrue == true) {			 			
 			 

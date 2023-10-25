@@ -8,7 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.models.ShopManagerDBUtil;
+import com.models.SparePartsService;
+import com.models.SparePartImple;
 
 @WebServlet("/insertItemServlet")
 public class insertItemServlet extends HttpServlet {
@@ -32,8 +33,10 @@ public class insertItemServlet extends HttpServlet {
 		int shopMgrId = 2;
 		
 		boolean isTrue;
+		
+		SparePartsService obj1 = new SparePartImple();
 		 
-		 isTrue = ShopManagerDBUtil.insertItems(brand, location, wid, shopId, shopMgrId, type, convertedUnitPrice, convertedAmount);
+		 isTrue = obj1.insertItems(brand, location, wid, shopId, shopMgrId, type, convertedUnitPrice, convertedAmount);
 		 
 		 if(isTrue == true) {			 			
 			 

@@ -18,7 +18,9 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.models.ShopManagerDBUtil;
+
+import com.models.SparePartsService;
+import com.models.SparePartImple;
 
 @WebServlet("/PDFDownload")
 public class PDFDownload extends HttpServlet {
@@ -28,7 +30,9 @@ public class PDFDownload extends HttpServlet {
 		
 		try {
 			
-			List<Item> items = ShopManagerDBUtil.getItemDetails();
+			SparePartsService obj1 = new SparePartImple();
+			
+			List<Item> items = obj1.getItemDetails();
 			
 			Document document = new Document();
 			
