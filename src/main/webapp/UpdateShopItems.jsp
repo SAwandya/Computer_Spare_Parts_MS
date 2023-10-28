@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +21,12 @@
 	            <div class="mb-md-5 mt-md-4 pb-5">
 	
 	              <h2 class="fw-bold mb-2 text-uppercase">Update Item</h2>
+	              
+	              <c:if test="${not empty requestScope.errorMessage}">
+                <div class="alert alert-danger" role="alert">
+				  ${requestScope.errorMessage}
+				</div>
+				</c:if>
 	              
 				<form method="post" action="updateItemServlet">
 				
@@ -56,6 +64,8 @@
 				</form>
 	
 	            </div>
+	            
+	            
 	
 	          </div>
 	        </div>
